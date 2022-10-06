@@ -2,44 +2,41 @@ import javax.lang.model.SourceVersion;
 import java.util.Scanner;
 
 public class App{
-    static final Scanner inputScanner = new Scanner(System.in);
-    private static String getString(String prompt) {
-        System.out.println(prompt);
-        return inputScanner.nextLine();
-    }
-    
-    private static double getDouble(String prompt) {
-        System.out.println(prompt);
-        return inputScanner.nextDouble();
-    }
     public static void main(String[] args) {
-        double num1 = getDouble("Pick a number.");
-        double num2 = getDouble("Pick a second number.");
-        // System.out.println(String.format("You want to add %.2f and %.2f", num1,num2));
-        Calculator calcOne = new Calculator();
-        String operation;
-        switch(operation){
-            case "add": calcOne.add(num1, num2);
-            break;
-            case "subtract": calcOne.subtract(num1, num2);
-            break;
-            case "multiply": calcOne.multiply(num1, num2);
-            break;
-            case "divide": calcOne.divide(num1, num2);
-            break;
+        Calculator calc = new Calculator();
 
+        
+    int num1=0,num2=0,option,ex;
+    
+    do{
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter your choice from the following menu:");
+        System.out.println("1.Addition 2.Subtraction 3.Multiplication 4.Division 5.Exit");
+        option = sc.nextInt();
+        if(option!=5){
+            System.out.println("Enter the first number");
+            num1=sc.nextInt();
+            System.out.println("Enter the second number");
+            num2=sc.nextInt();
         }
 
-
-
-
-        double answer = calcOne.add(num1, num2);
-        System.out.println(answer);
-        System.out.println(calcOne.subtract(num1, num2));
-        System.out.println(calcOne.multiply(num1, num2));
-        System.out.println(calcOne.divide(num1, num2));
-    }
-
-
-
+        switch(option){
+            case 1:System.out.println(calc.add(num1, num2));
+                break;
+            case 2:System.out.println(calc.subtract(num1, num2));;
+                break;
+            case 3:System.out.println(calc.multiply(num1, num2));;
+                break;
+            case 4:	if(num2==0)
+                    System.out.println("Error!!! In Division denominator cannot be 0!");
+                else{
+                System.out.println(calc.divide(num1, num2));} 
+                break;
+            case 5: break;
+            default: System.out.println("Invalid choice");
+        }
+        System.out.println("Do you want to continue?1.Yes 2.No");
+        ex=sc.nextInt();
+    }while(ex==1);
+}
 }
